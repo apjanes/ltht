@@ -142,6 +142,7 @@
     <Content Include="Scripts\jsclass\state.js" />
     <Content Include="Scripts\jsclass\test.js" />
     <Content Include="Scripts\jsclass\tsort.js" />
+    <Content Include="Scripts\techtest.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\knockout.min.js" />
