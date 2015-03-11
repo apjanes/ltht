@@ -45,10 +45,10 @@
       <HintPath>packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="LightInject">
-      <HintPath>packages\LightInject.3.0.1.7\lib\net45\LightInject.dll</HintPath>
+      <HintPath>..\packages\LightInject.3.0.1.7\lib\net45\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="LightInject.WebApi">
-      <HintPath>packages\LightInject.WebApi.1.0.0.3\lib\net45\LightInject.WebApi.dll</HintPath>
+      <HintPath>..\packages\LightInject.WebApi.1.0.0.3\lib\net45\LightInject.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Omu.ValueInjecter">
@@ -200,11 +200,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TechTest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Ioc\ContainerFactory.cs" />
     <Compile Include="Models\Colour.cs" />
     <Compile Include="Models\PersonBase.cs" />
     <Compile Include="Models\PersonDetail.cs" />
     <Compile Include="Models\PersonSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DbContextProvider.cs" />
+    <Compile Include="Repositories\IColourRepository.cs" />
+    <Compile Include="Repositories\IDbContextProvider.cs" />
+    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Repositories\IRepositoryBase.cs" />
+    <Compile Include="Repositories\ColourRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

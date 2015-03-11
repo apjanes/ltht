@@ -3,28 +3,33 @@ using System.Linq;
 using System.Web.Http;
 using Ltht.TechTest.Entities;
 using Ltht.TechTest.Models;
+using Ltht.TechTest.Repositories;
 using Omu.ValueInjecter;
 
 namespace Ltht.TechTest.Controllers
 {
-    public class PeopleController: ApiController
+    public class PeopleController : ApiController
     {
+        private readonly IPersonRepository _personRepo;
+        private readonly IColourRepository _colourRepo;
+
+        public PeopleController(IColourRepository colourRepo, IPersonRepository personRepo)
+        {
+            _personRepo = personRepo;
+            _colourRepo = colourRepo;
+        }
+
         public void Put(int id, PersonDetail detail)
         {
-            using (var entities = new TechTestEntities())
-            {
-                var colourIds = detail.Colours.Select(x => x.ColourId).ToArray();
-                var entity = entities.People.Include("Colours").Single(x => x.PersonId == id);
-                var colours = entities.Colours.Where(x => colourIds.Any(y => y == x.ColourId));
-                entity.Colours.Clear();
-                foreach (var colour in colours)
-                {
-                    entity.Colours.Add(colour);
-                }
-                entity.InjectFrom(detail);
-                entities.SaveChanges();
-
-            }
+            var colourIds = detail.Colours.Select(x => x.ColourId).ToArray();
+            var entity = _personRepo.Query().Single(x => x.PersonId == id);
+            var colours = _colourRepo.Query()
+                                     .Where(x => colourIds.Any(y => y == x.ColourId))
+                                     .ToList();
+            entity.Colours.Clear();
+            colours.ForEach(x => entity.Colours.Add(x));
+            entity.InjectFrom(detail);
+            _personRepo.Save();
         }
 
         public PersonDetail Get(int id)
@@ -40,14 +45,10 @@ namespace Ltht.TechTest.Controllers
 
         public PersonSummary[] Get()
         {
-            using (var entities = new TechTestEntities())
-            {
-                return entities.People
-                               .Include("Colours")
-                               .ToList()
-                               .Select(person => new PersonSummary(person))
-                               .ToArray();
-            }
-        }     
+            return _personRepo.Query()
+                              .ToList()
+                              .Select(person => new PersonSummary(person))
+                              .ToArray();
+        }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using LightInject;
+using Ltht.TechTest.Ioc;
 
 namespace Ltht.TechTest
 {
@@ -10,9 +12,10 @@ namespace Ltht.TechTest
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            var container = ContainerFactory.Create();
+            container.EnableWebApi(config);
+            container.RegisterApiControllers(typeof(WebApiConfig).Assembly);
 
-            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
