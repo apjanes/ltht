@@ -9,7 +9,6 @@ namespace Ltht.TechTest.Repositories
     {
         private const string ItemsKey = "DbContext";
         private IDictionary _localItems;
-        private DbContextProvider _current;
 
         public TechTestEntities Get()
         {

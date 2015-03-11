@@ -6,8 +6,7 @@ namespace Ltht.TechTest.Repositories
     public class RepositoryBase<T> : IRepositoryBase<T>
         where T : class
     {
-        private readonly IDbContextProvider _provider;
-        private TechTestEntities _dbContext;
+        private readonly TechTestEntities _dbContext;
 
         public RepositoryBase(IDbContextProvider provider)
         {
