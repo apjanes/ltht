@@ -44,6 +44,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LightInject">
+      <HintPath>packages\LightInject.3.0.1.7\lib\net45\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.WebApi">
+      <HintPath>packages\LightInject.WebApi.1.0.0.3\lib\net45\LightInject.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Omu.ValueInjecter">
       <HintPath>packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
