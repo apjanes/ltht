@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Ltht.TechTest.Extensions;
 using Newtonsoft.Json;
 
 namespace Ltht.TechTest.Models
@@ -16,12 +17,7 @@ namespace Ltht.TechTest.Models
         [JsonProperty("isPalindrome")]
         public bool IsPalindrome
         {
-            get
-            {
-                var name = Name.Replace(" ", string.Empty).ToLower();
-                var reversed = new string(name.Reverse().ToArray());
-                return name == reversed;
-            }
+            get { return Name.IsPalindrome(); }
         }
 
         [JsonIgnore]
